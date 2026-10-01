@@ -6,8 +6,8 @@ import ErrorState from '../components/ErrorState'
 import EmptyState from '../components/EmptyState'
 
 function TodoListPage() {
-  const { todos, loading, error, addTodo } = useTodos()
-
+  const { todos, loading, error, addTodo, deleteTodo, toggleTodo } = useTodos()
+  
   return (
     <div>
       <h1>할 일 목록</h1>
@@ -16,7 +16,8 @@ function TodoListPage() {
       {loading && <Loading />}
       {error && <ErrorState message={error} />}
       {!loading && !error && todos.length === 0 && <EmptyState />}
-      {!loading && !error && todos.length > 0 && <TodoList todos={todos} />}
+      {!loading && !error && todos.length > 0 && (<TodoList todos={todos} onDelete={deleteTodo} onToggle={toggleTodo} />)}
+     
     </div>
   )
 }

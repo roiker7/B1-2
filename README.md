@@ -1,11 +1,28 @@
-# React + Vite
+# Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Supabase로 만든 할 일 관리 서비스
 
-Currently, two official plugins are available:
+## 기술 스택
+- React 19
+- React Router 7
+- Supabase
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 실행 방법
+
+\`\`\`bash
+npm install
+\`\`\`
+
+`.env` 파일 생성 후 아래 값 입력:
+
+\`\`\`
+VITE_SUPABASE_URL=your_project_url
+VITE_SUPABASE_ANON_KEY=your_publishable_key
+\`\`\`
+
+\`\`\`bash
+npm run dev
+\`\`\`
 
 ## React Compiler
 
@@ -74,3 +91,4 @@ function Counter() {
 - 컴포넌트 = 함수, props = 읽기 전용 입력, state = `set` 함수로만 바뀌는 값
 - **state가 바뀐다 = `set` 함수가 호출된다 = 리렌더링된다**, 이 세 가지는 항상 같이 움직인다
 - 개발 모드의 이중 렌더링은 버그가 아니라 StrictMode의 의도된 동작이며, production에서는 나타나지 않는다
+
