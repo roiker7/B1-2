@@ -5,9 +5,8 @@ import Button from './Button'
 function TodoForm({ onSubmit }) {
   const [title, setTitle] = useState('')
   const [error, setError] = useState('')
-  const [submitting, setSubmitting] = useState(false)
 
-  async function handleSubmit(e) {
+  function handleSubmit(e) {
     e.preventDefault()
 
     if (title.trim() === '') {
@@ -16,16 +15,8 @@ function TodoForm({ onSubmit }) {
     }
 
     setError('')
-    setSubmitting(true)
-
-    try {
-      await onSubmit(title)
-      setTitle('')
-    } catch (err) {
-      setError('추가에 실패했습니다. 다시 시도해주세요.')
-    } finally {
-      setSubmitting(false)
-    }
+    onSubmit(title)
+    setTitle('')
   }
 
   return (
@@ -35,12 +26,10 @@ function TodoForm({ onSubmit }) {
         onChange={(e) => setTitle(e.target.value)}
         placeholder="할 일을 입력하세요"
       />
-      <Button type="submit" disabled={submitting}>
-        {submitting ? '추가 중...' : '추가'}
-      </Button>
+      <Button type="submit">추가</Button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </form>
   )
 }
 
-export default TodoForm 
+export default TodoForm

@@ -5,7 +5,6 @@ import TodoDetailPage from './pages/TodoDetailPage'
 import TodoNewPage from './pages/TodoNewPage'
 import LoginPage from './pages/LoginPage'
 import NotFoundPage from './pages/NotFoundPage'
-import './App.css'
 
 
 function App() {

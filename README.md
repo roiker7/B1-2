@@ -9,28 +9,20 @@ React + Supabase로 만든 할 일 관리 서비스
 
 ## 실행 방법
 
-\`\`\`bash
+```
 npm install
-\`\`\`
+```
 
-`.env` 파일 생성 후 아래 값 입력:
+.env 파일 생성 후 아래 값 입력
 
-\`\`\`
-VITE_SUPABASE_URL=your_project_url
-VITE_SUPABASE_ANON_KEY=your_publishable_key
-\`\`\`
+```
+VITE_SUPABASE_URL=your_project_url = <개인정보 삭제>
+VITE_SUPABASE_ANON_KEY=your_publishable_key = <개인정보 삭제>
+```
 
-\`\`\`bash
+```
 npm run dev
-\`\`\`
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```
 
 -----------
 

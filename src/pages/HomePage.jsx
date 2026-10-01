@@ -1,27 +1,18 @@
-/*
-import { useState } from 'react'
-import Input from '../components/Input'
+import { useNavigate } from 'react-router-dom'
+import Button from '../components/Button'
 
 function HomePage() {
-  const [text, setText] = useState('')
+  const navigate = useNavigate()
 
   return (
-    <div>
-      <h1>홈</h1>
-      <Input
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-        placeholder="테스트 입력"
-      />
-      <p>지금 입력된 값: {text}</p>
+    <div className="page home-hero">
+      <h1>오늘 할 일, 가볍게 정리해보세요</h1>
+      <p className="home-subtitle">
+        할 일을 추가하고, 체크하고, 지우고 — 그게 전부입니다.
+      </p>
+      <Button onClick={() => navigate('/todos')}>할 일 보러가기</Button>
     </div>
   )
-}
-
-export default HomePage
-*/
-function HomePage() {
-  return <h1>홈</h1>
 }
 
 export default HomePage

@@ -14,7 +14,7 @@ function TodoList({ todos, onDelete, onToggle }) {
           <span style={{ textDecoration: todo.is_done ? 'line-through' : 'none' }}>
             {todo.title}
           </span>
-          <Button onClick={() => onDelete(todo.id)}>삭제</Button>
+          <Button variant="danger" onClick={() => onDelete(todo.id)}>삭제</Button>
         </Card>
       ))}
     </div>
