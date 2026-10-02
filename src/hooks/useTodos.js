@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { supabase } from '../lib/supabaseClient'
-/*
-// 사용자가 추가 버튼을 눌렀을 때 추가 상태를 보여주기 위한 코드
+
+// 사용자가 추가 버튼을 눌렀을 때 데이터를 불러오는 상태를 보여주기 위한 코드
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms))
 }
-*/
+
 function useTodos() {
   const [todos, setTodos] = useState([])
   const [loading, setLoading] = useState(true)
