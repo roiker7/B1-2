@@ -1,3 +1,4 @@
+https://b1-2-ruddy.vercel.app
 # Todo App
 
 React + Supabase로 만든 할 일 관리 서비스
