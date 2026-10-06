@@ -1,6 +1,6 @@
 # React Todo App — 학습 기록
 
-코디세이 부트캠프 프로젝트로 만든 React + Supabase 기반 할 일 관리 서비스입니다. 결과물 완성도보다 **과정에서 익힌 개념**을 기록하는 데 목적을 두고 작성했습니다. 1달 뒤, 1년 뒤에 이 문서만 읽어도 "왜 이렇게 만들었는지" 기억날 수 있도록 정리합니다.
+React + Supabase 기반 할 일 관리 서비스입니다. 
 
 - **배포 주소**: https://b1-2-ruddy.vercel.app
 - **기술 스택**: React 19, React Router 7, Supabase, Vercel
