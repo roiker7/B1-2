@@ -7,7 +7,48 @@
 
 ---
 
+## 주요 기능
+
+| 기능 | 설명 |
+|---|---|
+| 할 일 목록 조회 | Supabase에서 할 일을 등록순으로 불러옴 (로딩 / 에러 / 빈 상태 분기) |
+| 할 일 추가 | 빈 입력 검사, 제출 중 버튼 비활성화로 중복 제출 방지 |
+| 완료 체크 | 체크박스로 완료 여부 토글, 완료 시 취소선 표시 |
+| 삭제 | 목록에서 바로 삭제 |
+| 상세 보기 | `/todos/:id`에서 제목·등록일·상태 확인 |
+
+## 화면 구성
+
+| 경로 | 화면 | 파일 |
+|---|---|---|
+| `/` | 홈 | `HomePage.jsx` |
+| `/todos` | 할 일 목록 | `TodoListPage.jsx` |
+| `/todos/new` | 새 할 일 추가 | `TodoNewPage.jsx` |
+| `/todos/:id` | 할 일 상세 | `TodoDetailPage.jsx` |
+| 그 외 | 404 | `NotFoundPage.jsx` |
+
+---
+
 ## 실행 방법
+
+**요구 환경**: Node.js 20.19 이상 (Vite 8 기준)
+
+### 1. Supabase 테이블 준비
+
+Supabase 프로젝트를 만든 뒤 SQL Editor에서 실행:
+
+```sql
+create table todos (
+  id bigint generated always as identity primary key,
+  title text not null,
+  is_done boolean not null default false,
+  created_at timestamptz not null default now()
+);
+```
+
+> 학습 단계라 RLS는 꺼둔 상태입니다. (아래 4단계 참고)
+
+### 2. 패키지 설치 및 환경변수 설정
 
 ```bash
 npm install
@@ -20,8 +61,13 @@ VITE_SUPABASE_URL=발급받은_프로젝트_URL
 VITE_SUPABASE_ANON_KEY=발급받은_Publishable_key
 ```
 
+### 3. 실행
+
 ```bash
-npm run dev
+npm run dev       # 개발 서버 실행 → http://localhost:5173
+npm run build     # 배포용 빌드 (dist/ 폴더 생성)
+npm run preview   # 빌드 결과물을 로컬에서 미리보기
+npm run lint      # ESLint 코드 검사
 ```
 
 ---
@@ -30,8 +76,7 @@ npm run dev
 
 ```
 src/
-├── assets/          정적 이미지
-├── components/      재사용 UI 컴포넌트 (8개 이상)
+├── components/      재사용 UI 컴포넌트 (11개)
 │   ├── Header.jsx / Footer.jsx / Layout.jsx   공통 레이아웃
 │   ├── Button.jsx / Input.jsx / Card.jsx       기본 UI
 │   ├── Loading.jsx / ErrorState.jsx / EmptyState.jsx   데이터 상태 3종
@@ -122,7 +167,7 @@ SPA는 페이지 새로고침 없이 URL만 바뀌는 구조다. `<Routes>`는 �
 
 - `:id` 처럼 콜론이 붙으면 **아무 값이나 받는 자리**. `useParams()`로 꺼내 쓴다.
 - `*`는 위 어디에도 안 맞는 나머지 전부 → 404 처리.
-- `<Link to="...">`는 클릭 시 페이지 이동, `useNavigate()`는 **코드로** 이동시킬 때 사용 (폼 제출 성공 후 자동 이동 등).
+- `<Link to="...">`는 사용자가 클릭해서 이동할 때, `useNavigate()`는 **코드로** 이동시킬 때 사용 (이 프로젝트에서는 홈 화면의 "할 일 보러가기" 버튼에서 사용).
 
 ### 배운 것: React Router v6+는 순서가 아니라 구체성으로 매칭
 
@@ -151,7 +196,7 @@ SPA는 페이지 새로고침 없이 URL만 바뀌는 구조다. `<Routes>`는 �
 ### 만든 컴포넌트 8종과 설계 패턴
 
 - **Button, Input, Card**: 범용 UI. `children`으로 내용을 받고, 동작(`onClick`, `onChange`)은 부모가 결정 — 컴포넌트 자신은 "모양"만 책임진다.
-- **Loading, ErrorState, EmptyState**: 데이터를 다루는 화면이 항상 거쳐야 하는 3가지 상태를 전담하는 컴포넌트.
+- **Loading, ErrorState, EmptyState**: 데이터를 다루는 화면이 항상 거쳐야 하는 3가지 상태를 전담하는 컴포넌트. (현재 `TodoListPage`에 적용. `TodoDetailPage`는 아직 로딩 문구를 직접 쓰고 있고 에러 처리가 없어 개선 예정)
 - **TodoList, TodoForm**: 위 컴포넌트들을 조립한 도메인 전용 컴포넌트.
 
 ```jsx
@@ -305,4 +350,5 @@ git push
 
 - 할 일 **수정(제목 변경)** 기능 — CRUD의 Update를 한 번 더 깊이 연습
 - **로그인 + RLS** — Supabase Auth로 사용자별 데이터 분리, Row Level Security 정책 작성
+- `TodoDetailPage`에도 `Loading` / `ErrorState` 컴포넌트 적용해 상태 처리 통일
 - 컴포넌트 CSS 분리 (`Button.module.css` 등) — 프로젝트가 커질 때의 스타일 관리 전략
