@@ -1,6 +1,6 @@
 # React Todo App — 학습 기록
 
-코디세이 부트캠프 프로젝트로 만든 React + Supabase 기반 할 일 관리 서비스입니다. 결과물 완성도보다 **과정에서 익힌 개념**을 기록하는 데 목적을 두고 작성했습니다. 1달 뒤, 1년 뒤에 이 문서만 읽어도 "왜 이렇게 만들었는지" 기억날 수 있도록 정리합니다.
+React + Supabase 기반 할 일 관리 서비스입니다. 
 
 - **배포 주소**: https://b1-2-ruddy.vercel.app
 - **기술 스택**: React 19, React Router 7, Supabase, Vercel
@@ -57,8 +57,8 @@ npm install
 프로젝트 루트에 `.env` 파일 생성 후:
 
 ```
-VITE_SUPABASE_URL=발급받은_프로젝트_URL
-VITE_SUPABASE_ANON_KEY=발급받은_Publishable_key
+VITE_SUPABASE_URL=발급받은_프로젝트_URL_개인정보삭제
+VITE_SUPABASE_ANON_KEY=발급받은_Publishable_key_개인정보삭제
 ```
 
 ### 3. 실행
@@ -76,23 +76,28 @@ npm run lint      # ESLint 코드 검사
 
 ```
 src/
+├── assets/          정적 이미지
 ├── components/      재사용 UI 컴포넌트 (11개)
 │   ├── Header.jsx / Footer.jsx / Layout.jsx   공통 레이아웃
 │   ├── Button.jsx / Input.jsx / Card.jsx       기본 UI
 │   ├── Loading.jsx / ErrorState.jsx / EmptyState.jsx   데이터 상태 3종
 │   └── TodoList.jsx / TodoForm.jsx             Todo 도메인 조합 컴포넌트
 ├── hooks/
-│   └── useTodos.js  Supabase CRUD 로직을 담은 커스텀 훅
+│   └── useTodos.js  #Supabase CRUD 로직을 담은 커스텀 훅
+│
 ├── lib/
-│   └── supabaseClient.js   Supabase 클라이언트 초기화 (한 곳에서만 생성)
-├── pages/           라우트 단위 화면
-│   ├── HomePage / TodoListPage / TodoDetailPage / TodoNewPage / NotFoundPage
-├── App.jsx          라우터 설정 (중첩 라우트, Layout)
-├── main.jsx         진입점, BrowserRouter + StrictMode
-└── index.css        전역 스타일, CSS 변수 기반 디자인 시스템
+│   └── supabaseClient.js   #Supabase 클라이언트 초기화 (한 곳에서만 생성)
+│
+├── pages/           #라우트 단위 화면
+│   └──  HomePage / TodoListPage / TodoDetailPage / TodoNewPage / NotFoundPage
+│
+├── App.jsx          #라우터 설정 (중첩 라우트, Layout)
+├── main.jsx         #진입점, BrowserRouter + StrictMode
+└── index.css        #전역 스타일, CSS 변수 기반 디자인 시스템
 ```
 
-**설계 원칙**: `pages`는 조립만 담당하고, `components`는 재사용 가능한 조각을 담당한다. `hooks`는 "데이터를 어떻게 다루는지"를, 컴포넌트는 "무엇을 어떻게 보여줄지"를 책임진다 — 역할을 철저히 분리했다.
+**설계 원칙**: `pages`는 조립만 담당하고, `components`는 재사용 가능한 조각을 담당한다. <br>
+`hooks`는 "데이터를 어떻게 다루는지"를, 컴포넌트는 "무엇을 어떻게 보여줄지"를 책임지게 역할을 분리했다.
 
 ---
 
