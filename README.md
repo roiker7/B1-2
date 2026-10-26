@@ -350,10 +350,3 @@ git push
 1. **state가 바뀐다 = 리렌더링된다** — 이 연결고리 하나가 React의 거의 모든 동작을 설명한다.
 2. **데이터는 항상 불변하게 다룬다** — 배열/객체를 직접 수정하지 않고 항상 새로 만들어 교체한다.
 3. **책임을 분리한다** — pages는 조립만, components는 UI만, hooks는 데이터 로직만. 하나가 여러 일을 떠안지 않게 하면 코드가 커져도 각 부분을 따로 이해할 수 있다.
-
-## 다음에 도전해볼 만한 것
-
-- 할 일 **수정(제목 변경)** 기능 — CRUD의 Update를 한 번 더 깊이 연습
-- **로그인 + RLS** — Supabase Auth로 사용자별 데이터 분리, Row Level Security 정책 작성
-- `TodoDetailPage`에도 `Loading` / `ErrorState` 컴포넌트 적용해 상태 처리 통일
-- 컴포넌트 CSS 분리 (`Button.module.css` 등) — 프로젝트가 커질 때의 스타일 관리 전략
